@@ -1,0 +1,7 @@
+<script>
+    function eliminarUsuario() {
+        if (confirm("¿Estás seguro de que deseas eliminar este usuario?")) 
+            document.querySelector("form").submit();
+        }
+    }
+</script>
