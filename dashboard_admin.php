@@ -62,7 +62,10 @@ if(empty($CorreoElectronico))
             </div>
             <div class="form-item">
                 <label for="verificar-password" class="form-label">Verificar Contraseña *</label>
-                <input type="password" id="verificar-password" class="form-input">
+                <input type="password" id="password" name="contrasena" class="form-input" required
+                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@*#/]).{8,}" 
+                 title="La contraseña debe tener al menos 8 caracteres, incluyendo al menos un número, una mayúscula, una minúscula y un carácter especial (@, *, # o /)">
+
             </div>
             <div class="form-buttons">
                 <button type="button" class="small-form-button">Nuevo</button>
