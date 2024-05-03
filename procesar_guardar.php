@@ -1,55 +1,72 @@
 <?php
 session_start();
-require(database.php) 
-$db = $conn;
-if (empty($_SESSION['CorreoElectronico'])) {
-    header("location:login-script.php");
-    exit();
+
+if (empty($_SESSION['CorreoElectronico']) && basename($_SERVER['PHP_SELF']) != 'procesar_guardar.php') {
+    header("location: procesar_guardar.php");
+    exit;
 }
 
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "gdu";
-
-$conn = new mysqli($host, $username, $password, $database);
-
-¡if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+// Conexión a la base de datos
+function connectToDatabase($host, $dbname, $user, $password) {
+    try {
+        $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $conn;
+    } catch (PDOException $e) {
+        die("Error al conectar a la base de datos: " . $e->getMessage());
+    }
 }
 
-$nombre_completo = $_POST['nombre_completo'] ?? '';
-$cargo_empleado = $_POST['cargo_empleado'] ?? '';
-$num_empleado = $_POST['num_empleado'] ?? '';
-$telefono = $_POST['telefono'] ?? '';
-$nss = $_POST['nss'] ?? '';
-$correo_electronico = $_POST['correo_electronico'] ?? '';
-$contrasena = $_POST['contrasena'] ?? '';
+function validateInput($data) {
+    if (
+        empty($data['Nombre_Completo']) ||
+        empty($data['Cargo_Empleado']) ||
+        empty($data['NumEmpleado']) ||
+        empty($data['Telefono']) ||
+        empty($data['Nss']) ||
+        empty($data['CorreoElectronico']) ||
+        empty($data['Contraseña']) ||
+        empty($data['Confirmar_Contraseña']) ||
+        $data['Contraseña'] !== $data['Confirmar_Contraseña']
+    ) {
+        throw new Exception("Todos los campos son obligatorios y las contraseñas deben coincidir.");
+	
+    }
 
-$contrasena_hash = password_hash($contrasena, PASSWORD_DEFAULT);
-
-$sql = "INSERT INTO Usuarios (Nombre_Completo, NumEmpleado, Nss, Cargo_Empleado, Telefono, CorreoElectronico, Contraseña) 
-        VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-$stmt = $conn->prepare($sql);
-
-if ($stmt === false) {
-    die('MySQL prepare error: ' . $conn->error);
+    $password = $data['Contraseña'];
+    if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[*@\/#])[A-Za-z\d*@\/#]{8,}$/', $password)) {
+        throw new Exception("La contraseña debe tener al menos 8 caracteres, incluyendo al menos una mayúscula, una minúscula, un número y un carácter especial (*@/#).");
+    }
 }
 
-$stmt->bind_param("sssssss", $nombre_completo, $num_empleado, $nss, $cargo_empleado, $telefono, $correo_electronico, $contrasena_hash);
+function insertUser($conn, $data) {
+    $sql = "INSERT INTO Usuarios (Nombre_Completo, Cargo_Empleado, NumEmpleado, Telefono, Nss, CorreoElectronico, Contraseña)
+            VALUES (:Nombre_Completo, :Cargo_Empleado, :NumEmpleado, :Telefono, :Nss, :CorreoElectronico, :Contraseña)";
+    $stmt = $conn->prepare($sql);
+    $password_hashed = password_hash($data['Contraseña'], PASSWORD_DEFAULT);
 
-if ($stmt->execute()) {
-    echo "Nuevo registro creado con éxito";
-} else {
-    echo "Error: " . $stmt->error;
+    $stmt->bindParam(':Nombre_Completo', $data['Nombre_Completo']);
+    $stmt->bindParam(':Cargo_Empleado', $data['Cargo_Empleado']);
+    $stmt->bindParam(':NumEmpleado', $data['NumEmpleado']);
+    $stmt->bindParam(':Telefono', $data['Telefono']);
+    $stmt->bindParam(':Nss', $data['Nss']);
+    $stmt->bindParam(':CorreoElectronico', $data['CorreoElectronico']);
+    $stmt->bindParam(':Contraseña', $password_hashed);
+    $stmt->execute();
 }
 
-$stmt->close();
+$host = 'localhost'; 
+$dbname = 'gdu';
+$user = 'root';
+$password = '';
 
-$conn->close();
-
-header("Location: dashboard_admin.html");
-exit();
+try {
+    $conn = connectToDatabase($host, $dbname, $user, $password);
+    validateInput($_POST);
+    insertUser($conn, $_POST);
+    header("Location: registro_exitoso.php");
+    exit;
+} catch (Exception $e) {
+    die("Error: " . $e->getMessage());
+}
 ?>
-
