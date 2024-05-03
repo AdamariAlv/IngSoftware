@@ -74,16 +74,16 @@ if(empty($CorreoElectronico))
                 <button type="button" class="small-form-button">Eliminar</button>
             </div>
         </form>
-          <h2 class="section-heading">Gestor de Usuarios</h2>
-            <form action="index.php" method="POST" class="form-container">
-                <div class="form-item">
-                    <label for="num-nss" class="form-label">Número de Empleado *</label>
-                    <input type="text" id="num-nss" name="num_empleado" class="form-input" required>
-                </div>
-                <div class="form-buttons">
-                    <button type="submit" name="eliminar_usuario" class="small-form-button">Eliminar</button>
-                </div>
-            </form>
+          
+        <form action="index.php" method="POST" class="form-container">
+            <div class="form-item">
+                <label for="num-nss" class="form-label">Número de Empleado *</label>
+                <input type="text" id="num-nss" name="num_empleado" class="form-input" required>
+            </div>
+            <div class="form-buttons">
+                <button type="button" onclick="eliminarUsuario()" class="small-form-button">Eliminar</button>
+            </div>
+        </form>
           
         <h2 class="section-heading">Búsqueda</h2>
         <div class="search-container">
