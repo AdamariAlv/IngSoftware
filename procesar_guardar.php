@@ -7,7 +7,7 @@ if (empty($_SESSION['CorreoElectronico'])) {
 }
 
 $host = 'localhost'; 
-$dbname = 'Usuarios';
+$dbname = 'gdu';
 $user = 'root';
 $password = '';
 
