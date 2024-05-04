@@ -3,7 +3,7 @@ session_start();
 $CorreoElectronico= $_SESSION['CorreoElectronico'];
 if(empty($CorreoElectronico))
 {
-  header("location:login-form.php");
+  header("location:login-script.php");
 }
 ?>
 
