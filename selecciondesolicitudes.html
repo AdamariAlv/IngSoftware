@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selección de Solicitud</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        .container {
+            width: 50%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+        }
+        .form-group {
+            margin: 20px 0;
+        }
+        .form-group select {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .button-group button {
+            padding: 10px 20px;
+            margin: 20px 10px 0 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        .button-group button:hover {
+            background-color: #45a049;
+        }
+        .selected-request {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7f3fe;
+            border-left: 6px solid #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Seleccione la Solicitud</h1>
+        </div>
+        <div class="form-group">
+            <select>
+                <option value="" disabled selected>Nombre Solicitante</option>
+                <option value="solicitante1">Solicitante 1</option>
+                <option value="solicitante2">Solicitante 2</option>
+                <option value="solicitante3">Solicitante 3</option>
+                <!-- Añadir más opciones según sea necesario -->
+            </select>
+        </div>
+        <div class="button-group">
+            <button>Seleccionar</button>
+        </div>
+        
+    </div>
+</body>
+</html>
