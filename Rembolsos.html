@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reembolsos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Cambié height a min-height para permitir que el contenido crezca */
+            position: relative; /* Añadí position relative para posicionar la barra inferior */
+        }
+
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            margin-top: 20px;
+        }
+
+        .form-item {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .form-description {
+            font-size: 14px;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .small-form-button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #800000;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .small-form-button:hover {
+            background-color: #600000;
+        }
+
+        /* Estilos para el menú lateral */
+        .sidebar {
+            position: fixed;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            background-color: #333;
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .sidebar-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #800000;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar-button:hover {
+            background-color: #600000;
+        }
+
+        /* Estilos para la barra inferior */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .logout-button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #800000;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-right: 20px;
+        }
+
+        .logout-button:hover {
+            background-color: #600000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Solicitud de Reembolso</h1>
+        <div class="form-container">
+            <div class="form-item">
+                <label for="comprobante" class="form-label">Número/Clave del Comprobante:</label>
+                <input type="text" id="comprobante" class="form-input" placeholder="Ingrese el número o clave del comprobante">
+            </div>
+            <div class="form-item">
+                <label for="nombre" class="form-label">Nombre del Usuario:</label>
+                <input type="text" id="nombre" class="form-input" placeholder="Ingrese el nombre del usuario">
+            </div>
+            <div class="form-item">
+                <label for="motivo" class="form-label">Motivo del Reembolso:</label>
+                <textarea id="motivo" class="form-input" placeholder="Ingrese el motivo del reembolso"></textarea>
+            </div>
+        </div>
+        <div class="form-buttons">
+            <button class="small-form-button">Enviar Solicitud</button>
+            <button class="small-form-button">Cancelar</button>
+        </div>
+    </div>
+    <!-- menú lateral -->
+    <div class="sidebar">
+        <button class="sidebar-button">Notificaciones</button>
+        <button class="sidebar-button">Solicitar Viáticos</button>
+        <button class="sidebar-button">Registrar Comprobantes</button>
+        <button class="sidebar-button">Solicitar Reembolso</button>
+    </div>
