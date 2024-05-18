@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reembolsos</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Agregamos un archivo de estilos externo -->
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Solicitud de Reembolso</h1>
+        <div class="form-container">
+            <div class="form-item">
+                <label for="comprobante" class="form-label">Número/Clave del Comprobante:</label>
+                <input type="text" id="comprobante" class="form-input" placeholder="Ingrese el número o clave del comprobante">
+            </div>
+            <div class="form-item">
+                <label for="nombre" class="form-label">Nombre del Usuario:</label>
+                <input type="text" id="nombre" class="form-input" placeholder="Ingrese el nombre del usuario">
+            </div>
+            <div class="form-item">
+                <label for="motivo" class="form-label">Motivo del Reembolso:</label>
+                <textarea id="motivo" class="form-input" placeholder="Ingrese el motivo del reembolso"></textarea>
+            </div>
+        </div>
+        <div class="form-buttons">
+            <button class="small-form-button">Enviar Solicitud</button>
+            <button class="small-form-button">Cancelar</button>
+        </div>
+    </div>
+    <!-- Agregamos el menú lateral -->
+    <div class="sidebar">
+        <button class="sidebar-button">Notificaciones</button>
+        <button class="sidebar-button">Solicitar Viáticos</button>
+        <button class="sidebar-button">Registrar Comprobantes</button>
+        <button class="sidebar-button">Solicitar Reembolso</button>
+    </div>
+    <!-- Agregamos el botón de enviar en la esquina inferior derecha -->
+    <div class="send-button-container">
+        <button class="send-button">Enviar</button>
+    </div>
+</body>
+</html>
