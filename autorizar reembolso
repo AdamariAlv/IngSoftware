@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revisión de Reembolso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo img {
+            width: 200px;
+            height: auto;
+        }
+
+        .button-back {
+            padding: 10px 20px;
+            background-color: #dc3545;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button-back:hover {
+            background-color: #c82333;
+        }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            width: 100%;
+            max-width: 800px;
+            margin: 50px auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .form-item {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            flex: 1;
+        }
+
+        .form-value {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            flex: 3;
+            position: relative;
+        }
+
+        .valid-icon {
+            color: green;
+            font-size: 20px;
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: none;
+        }
+
+        .valid-message {
+            color: green;
+            font-size: 14px;
+            position: absolute;
+            right: -120px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: none;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .button-approve {
+            background-color: #28a745;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button-approve:hover {
+            background-color: #218838;
+        }
+
+        .button-reject {
+            background-color: #dc3545;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button-reject:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo1.png" alt="Logo">
+        </div>
+        <button class="button-back">Regresar</button>
+    </header>
+    <div class="container">
+        <h1>Revisión de Reembolso</h1>
+        <div class="form-item">
+            <label class="form-label">Número de Comprobante</label>
+            <div class="form-value" id="comprobante-value">123456<span class="valid-icon" id="comprobante-valid">✓</span><span class="valid-message" id="comprobante-message">Campo válido</span></div>
+        </div>
+        <div class="form-item">
+            <label class="form-label">Número de Empleado</label>
+            <div class="form-value" id="empleado-numero-value">78910<span class="valid-icon" id="empleado-numero-valid">✓</span><span class="valid-message" id="empleado-numero-message">Campo válido</span></div>
+        </div>
+        <div class="form-item">
+            <label class="form-label">Nombre del Empleado</label>
+            <div class="form-value" id="empleado-nombre-value">Juan Pérez<span class="valid-icon" id="empleado-nombre-valid">✓</span><span class="valid-message" id="empleado-nombre-message">Campo válido</span></div>
+        </div>
+        <div class="form-item">
+            <label class="form-label">Descripción del Motivo del Reembolso</label>
+            <div class="form-value" id="descripcion-value">Compra de materiales de oficina</div>
+        </div>
+        <div class="form-item">
+            <label class="form-label">Archivo Adjunto</label>
+            <div class="form-value">
+                <a href="ruta/del/archivo" download>Descargar archivo</a>
+            </div>
+        </div>
+        <div class="button-container">
+            <button class="button-approve" onclick="authorizeReembolso()">Autorizar</button>
+            <button class="button-reject" onclick="rejectReembolso()">Rechazar</button>
+        </div>
+    </div>
