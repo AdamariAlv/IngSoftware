@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Comprobantes</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    width: 200px;
+    height: auto;
+}
+
+.container {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 800px;
+    margin: 50px auto;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.form-item {
+    margin-bottom: 25px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.button-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-save {
+    background-color: #0081d6;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #000000;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-save:hover {
+    background-color: #3fb2ff;
+}
+
+.button-send {
+    background-color: #9e0202;
+}
+
+.button-send:hover {
+    background-color: #9e0202;
+}
+
+.message {
+    margin-top: 20px;
+    display: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.button-back {
+    padding: 10px 20px;
+    background-color: #dc3545;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-back:hover {
+    background-color: #c82333;
+}
+    </style>
+
+
+
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo1.png" alt="Logo Gobierno de Torreón">
+        </div>
+        <button onclick="window.history.back()" class="button-back">Regresar</button>
+    </header>
+    <div class="container">
+        <h1>REGISTRAR COMPROBANTES</h1>
+        <div class="form-item">
+            <label for="hospedaje" class="form-label">Hospedaje: </label>
+            <input type="number" id="hospedaje" class="form-input" placeholder="Ingrese el monto $">
+        </div>
+        <div class="form-item">
+            <label for="alimentacion" class="form-label">Alimentación: </label>
+            <input type="number" id="alimentacion" class="form-input" placeholder="Ingrese el monto $">
+        </div>
+        <div class="form-item">
+            <label for="transporte" class="form-label">Transporte: </label>
+            <input type="number" id="transporte" class="form-input" placeholder="Ingrese el monto $">
+        </div>
+        <div class="form-item">
+            <button onclick="guardarDatos()" class="button-save">Guardar datos</button>
+        </div>
+        <div class="form-item">
+            <label for="evidencia" class="form-label">Adjuntar evidencia</label>
+            <input type="file" id="evidencia" class="form-input" multiple onchange="mostrarArchivos()">
+        </div>
+        
+        <div id="fileList"></div>        
+        <div class="button-container">
+            <button onclick="guardarDatos()" class="button-save">Guardar</button>
+            <button onclick="enviarInformacion()" class="button-send">Enviar</button>
+        </div>
+        <div id="successMessage" class="message success">La información queda registrada exitosamente, comprobantes subidos con éxito.</div>
+        <div id="errorMessage" class="message error"></div>
+    </div>
+
+    <script>
+        function guardarDatos() {
+            const hospedaje = document.getElementById('hospedaje').value;
+            const alimentacion = document.getElementById('alimentacion').value;
+            const transporte = document.getElementById('transporte').value;
+            const evidencia = document.getElementById('evidencia').files;
+            
+            if (hospedaje > 10000 || alimentacion > 10000 || transporte > 10000) {
+                mostrarError('¡ERROR! La cantidad ha excedido el límite de cuota.');
+                return;
+            }
+            
+            if (evidencia.length < 3) {
+                mostrarError('¡ERROR! Se requieren al menos tres archivos de evidencia.');
+                return;
+            }
+
+            mostrarExito();
+        }
+
+        function enviarInformacion() {
+            // Aquí se puede agregar la lógica para enviar la información
+            guardarDatos();
+        }
+
+        function mostrarExito() {
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('errorMessage').style.display = 'none';
+        }
+
+        function mostrarError(mensaje) {
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.textContent = mensaje;
+            errorMessage.style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+        }
+
+        function mostrarArchivos() {
+            const fileListContainer = document.getElementById('fileList');
+            fileListContainer.innerHTML = '';
+            const files = document.getElementById('evidencia').files;
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const listItem = document.createElement('div');
+                listItem.textContent = file.name;
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Eliminar';
+                removeButton.onclick = function() {
+                    eliminarArchivo(i);
+                };
+                listItem.appendChild(removeButton);
+                fileListContainer.appendChild(listItem);
+            }
+        }
+
+        function eliminarArchivo(index) {
+    const input = document.getElementById('evidencia');
+    input.value = ''; // Limpiar el valor del input para resetearlo
+
+    const files = Array.from(input.files);
+    files.splice(index, 1);
+
+    // Volver a agregar los archivos restantes al input
+    files.forEach(file => {
+        input.files = new FileListItem(file, input.files);
+    });
+
+    mostrarArchivos();
+}
+class FileListItem extends FileList {
+    constructor(file, list) {
+        super();
+        list = list || [];
+        list.push(file);
+        for (let i = 0; i < list.length; i++) {
+            this[i] = list[i];
+        }
+        this.length = list.length;
+    }
+}
+
+    </script>
+</body>
+</html>
