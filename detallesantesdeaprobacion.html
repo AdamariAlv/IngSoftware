@@ -9,6 +9,7 @@
             font-family: Arial, sans-serif;
             background-color: #f0f8ff;
             color: #333;
+            margin: 0;
         }
         .container {
             width: 70%;
@@ -66,23 +67,79 @@
         .button-group button.reject:hover {
             background-color: #e53935;
         }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            color: #333;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .logo img {
+            height: 50px;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        .user-info span {
+            margin-right: 10px;
+        }
+        .user-info img {
+            margin-right: 20px;
+            height: 20px;
+            width: 20px;
+        }
+        .user-info a {
+            color: #333;
+            margin-right: 10px;
+            text-decoration: none;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            border-radius: 4px;
+            background-color: #f0f0f0;
+        }
     </style>
+    <script>
+        window.onload = function() {
+            const now = new Date();
+            document.getElementById('datetime').textContent = now.toLocaleString();
+
+            const params = new URLSearchParams(window.location.search);
+            const solicitante = params.get('solicitante');
+            if (solicitante) {
+                document.getElementById('nombre-solicitante').textContent = solicitante;
+                document.getElementById('info-solicitante').textContent = 'Información del ' + solicitante;
+                document.getElementById('descripcion-viaje').textContent = 'Descripción del viaje de ' + solicitante;
+            }
+        }
+    </script>
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <img src="imagenes/logo1.png" alt="Logo Gobierno de Torreón">
+        </div>
+        <div class="user-info">
+            <span>Bienvenid@ Usuario</span>
+            <img src="imagenes/notification-icon.png" alt="Notification Icon">
+            <a href="#">Cerrar Sesión</a>
+        </div>
+    </header>
     <div class="container">
         <div class="left-panel">
-            <h2>Nombre Solicitante</h2>
-            <p>Información del Solicitante</p>
+            <h2 id="nombre-solicitante">Nombre Solicitante</h2>
+            <p id="info-solicitante">Información del Solicitante</p>
             <h2>Descripción del Viaje</h2>
-            <p>Tipo de Viaje: </p>
-            <p>Destino: </p>
-            <p>Fecha: </p>
+            <p id="descripcion-viaje">Tipo de Viaje: </p>
+            <p>Destino</p>
         </div>
         <div class="right-panel">
-            <h2>Foto</h2>
-            <img src="avatar_placeholder.png" alt="Foto del solicitante">
+            <h2>Detalles del Solicitante</h2>
+            <img src="image/user-placeholder.png" alt="Foto del Solicitante">
             <div class="button-group">
-                <button>Aceptar</button>
+                <button>Aprobar</button>
                 <button class="reject">Rechazar</button>
             </div>
         </div>
