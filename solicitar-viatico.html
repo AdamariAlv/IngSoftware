@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar Viático</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo1.png" alt="Logo Gobierno de Torreón">
+        </div>
+        <div class="user-info">
+            <span>Bienvenid@ Usuario</span>
+            <a href="#">Cerrar Sesión</a>
+        </div>
+    </header>
+
+    <main>
+        <h2 class="section-heading">Solicitar Viático</h2>
+        <div class="form-container">
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="tipo-viaje">Tipo de Viaje:</label>
+                    <select name="tipo-viaje" id="tipo-viaje">
+                        <option value="nacional">Nacional</option>
+                        <option value="internacional">Internacional</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="fecha-inicial">Seleccione fecha inicial:</label>
+                    <input type="date" id="start-date" name="fecha-inicial" style="width: 350px;>
+                </div>
+                <div class="form-group">
+                    <label for="fecha-final">Seleccione fecha final:</label>
+                    <input type="date" id="fecha-final" name="fecha-final" style="width: 350px;>
+                </div>
+                <div class="form-group">
+                    <label for="nombre-solicitante">Nombre del Solicitante:</label>
+                    <input type="text" id="nombre-solicitante" name="nombre-solicitante" style="width: 350px;>
+                </div>
+                <div class="form-group">
+                    <label for="cargo">Cargo:</label>
+                    <input type="text" id="cargo" name="cargo" style="width: 350px;>
+                </div>
+                <div class="form-group">
+                    <label for="departamento">Departamento/Unidad:</label>
+                    <input type="text" id="departamento" name="departamento" style="width: 350px;>
+                </div>
+                <div class="form-group">
+                    <label for="descripcion-viaje">Descripción de Viaje:</label>
+                    <textarea id="descripcion-viaje" name="descripcion-viaje" rows="4"></textarea>
+                </div>
+                <div class="button-group">
+                    <button type="submit">Guardar</button>
+                    <button type="button">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    
+    <script src="script.js" defer></script>
+</body>
+</html>
