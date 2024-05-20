@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalla de Factura</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .header-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .header-buttons .left,
+        .header-buttons .right {
+            display: flex;
+            align-items: center;
+        }
+        .header-buttons button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #800000;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .header-buttons button:hover {
+            background-color: #600000;
+        }
+        .header-buttons .right img {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .center-buttons {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .center-buttons button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .center-buttons button:hover {
+            background-color: #0056b3;
+        }
+        .invoice {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        .invoice-header, .invoice-body, .invoice-footer {
+            margin-bottom: 20px;
+        }
+        .invoice-header {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .invoice-body {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .invoice-footer {
+            text-align: right;
+        }
+        .invoice-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .invoice-buttons button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #800000;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .invoice-buttons button:hover {
+            background-color: #600000;
+        }
+    </style>
+</head>
+<body>
+    <header class="header-buttons">
+        <div class="left">
+            <button>Inicio</button>
+        </div>
+        <div class="right">
+            <img src="notification-icon.png" alt="Notificaciones">
+            <img src="user-icon.png" alt="Usuario">
+        </div>
+    </header>
+    <div class="container">
+        <div class="center-buttons">
+            <button>Comprobantes</button>
+            <button>Solicitud</button>
+        </div>
+        <div class="invoice">
+            <div class="invoice-header">
+                <h2>Factura de Viáticos</h2>
+                <p><strong>Fecha:</strong> 18/05/2024</p>
+                <p><strong>Factura N°:</strong> 12345</p>
+            </div>
+            <div class="invoice-body">
+                <p><strong>Cliente:</strong> Juan Pérez</p>
+                <p><strong>Dirección:</strong> Calle Falsa 123, Ciudad, País</p>
+                <p><strong>Descripción:</strong> Gastos de viáticos</p>
+                <p><strong>Cantidad:</strong> 1</p>
+                <p><strong>Precio Unitario:</strong> $500.00</p>
+                <p><strong>Monto:</strong> $500.00</p>
+            </div>
+            <div class="invoice-footer">
+                <p><strong>Total:</strong> $500.00</p>
+            </div>
+        </div>
+        <div class="invoice-buttons">
+            <button>Autorizar</button>
+            <button>Rechazar</button>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
